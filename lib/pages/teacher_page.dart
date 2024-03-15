@@ -1,7 +1,7 @@
 import 'login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:seduc_app/pages/chamada_page.dart';
-import 'package:seduc_app/pages/home_page.dart';
+import 'package:appSchool/pages/chamada_page.dart';
+import 'package:appSchool/pages/home_page.dart';
 
 class ProfessorPage extends StatefulWidget {
   const ProfessorPage({super.key});

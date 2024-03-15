@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seduc_app/pages/login_page.dart';
+import 'package:appSchool/pages/login_page.dart';
 
 void main() {
   runApp(const SeducApp());

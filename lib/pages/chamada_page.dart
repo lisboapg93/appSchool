@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:seduc_app/pages/home_page.dart';
-import 'package:seduc_app/pages/teacher_page.dart';
+import 'package:appSchool/pages/teacher_page.dart';
 //import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ChamadaPage extends StatefulWidget {

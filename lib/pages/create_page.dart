@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:seduc_app/features/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:appSchool/features/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:flutter/material.dart';
-import 'package:seduc_app/pages/login_page.dart';
+import 'package:appSchool/pages/login_page.dart';
 //import 'package:seduc_app/components/ctextfield.dart';
 
 

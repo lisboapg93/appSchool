@@ -2,7 +2,7 @@
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/material.dart';
-import 'package:seduc_app/pages/chamada_page.dart';
+import 'package:appSchool/pages/chamada_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
