@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:seduc_app/pages/create_page.dart';
-//import 'package:seduc_app/pages/teacher_page.dart';
+import 'package:seduc_app/pages/teacher_page.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
 import '../features/firebase_auth_implementation/firebase_auth_services.dart';
@@ -18,8 +18,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final FirebaseAuthService _auth = FirebaseAuthService();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   bool isLoading = false;
 
@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
   final cpf1Controller = MaskedTextController(mask: '000.000.000-00');
 
-  // void _login() {
+  // void _signIn() {
   //   // Simule um processo de autenticação
   //   setState(() {
   //     isLoading = true;
@@ -176,7 +176,12 @@ class _LoginPageState extends State<LoginPage> {
 
     if(user != null){
       print("Usuário cadastrado com sucesso!");
-      Navigator.pushNamed(context, "/home");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ProfessorPage(),
+        )
+      );
     } else { 
       print("Erro ao cadastrar usuário!");
     }
