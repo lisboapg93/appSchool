@@ -1,4 +1,4 @@
-# seduc_app
+# app School
 
 A new Flutter project.
 
