@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:seduc_app/features/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:seduc_app/pages/login_page.dart';
 //import 'package:seduc_app/components/ctextfield.dart';
@@ -12,7 +14,20 @@ class CreatePage extends StatefulWidget{
 }
 
 class _CreatePageState extends State<CreatePage> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   bool isLoading = false;
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
 void _create() {
     // Simule um processo de autenticação
@@ -42,6 +57,7 @@ void _create() {
           children: [
             const SizedBox(height: 20),
             TextFormField(
+              controller: _usernameController,
               decoration: const InputDecoration(
                 labelText: "Nome",
                 border: OutlineInputBorder(),
@@ -49,6 +65,7 @@ void _create() {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 labelText: "Email",
@@ -57,6 +74,7 @@ void _create() {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: _passwordController,
               decoration: const InputDecoration(
                 labelText: "Senha",
                 border: OutlineInputBorder(),
@@ -94,5 +112,20 @@ void _create() {
         ),
       ),
     );
+  }
+
+  void _signUp() async{
+    String username = _usernameController.text;
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signUpWithEmailAndPassword(username, email, password);
+
+    if(user != null){
+      print("Usuário cadastrado com sucesso!");
+      Navigator.pushNamed(context, "/home");
+    } else { 
+      print("Erro ao cadastrar usuário!");
+    }
   }
 }

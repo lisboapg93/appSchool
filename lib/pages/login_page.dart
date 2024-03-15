@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:seduc_app/pages/create_page.dart';
-import 'package:seduc_app/pages/teacher_page.dart';
-import 'package:seduc_app/components/ctextfield.dart';
+//import 'package:seduc_app/pages/teacher_page.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
+
+import '../features/firebase_auth_implementation/firebase_auth_services.dart';
 //import 'package:features/app/firebase_auth_implementation/firebase_auth_services.dart';
 
 // ignore: must_be_immutable
@@ -15,25 +17,37 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  bool isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   TextEditingController cpfController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool isLoading = false;
   final cpf1Controller = MaskedTextController(mask: '000.000.000-00');
 
-  void _login() {
-    // Simule um processo de autenticação
-    setState(() {
-      isLoading = true;
-    });
-    Future.delayed(const Duration(seconds: 1), () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ProfessorPage(),
-        ),
-      );
-    });
-  }
+  // void _login() {
+  //   // Simule um processo de autenticação
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+  //   Future.delayed(const Duration(seconds: 1), () {
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => const ProfessorPage(),
+  //       ),
+  //     );
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,19 +60,28 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/school.png", width: 180,),
+                Image.asset(
+                  "assets/school.png",
+                  width: 180,
+                ),
                 const SizedBox(height: 80),
-                CTextField(
-                  hintText: "Email",
-                  obscureText: false,
-                  controller: cpfController,
+                TextFormField(
+                  controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    labelText: "Email",
+                    border: OutlineInputBorder(),
+                  ),
                 ),
                 const SizedBox(height: 10),
-                CTextField(
-                  hintText: "Senha",
+                TextFormField(
+                  keyboardType: TextInputType.text,
                   obscureText: true,
-                  controller: passwordController,
+                  controller: _passwordController,
+                  decoration: const InputDecoration(
+                    labelText: "Senha",
+                    border: OutlineInputBorder(),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -90,11 +113,13 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      onPressed: isLoading ? null : _login,
+                      onPressed: 
+                      isLoading ? null : _signIn,
                       child: isLoading
                           ? const CircularProgressIndicator(
                               color: Colors.white,
-                            ):const Text(
+                            )
+                          : const Text(
                               "Entrar",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -103,44 +128,57 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: const Color.fromRGBO(58, 141, 192, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
                     ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.black, 
-                          backgroundColor: const Color.fromRGBO(58, 141, 192, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CreatePage(),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const CreatePage(),
-                            ),
-                          );
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            "Criar conta",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
-                          ),
+                      );
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Criar conta",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 16,
                         ),
                       ),
                     ),
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+  void _signIn() async{
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    if(user != null){
+      print("Usuário cadastrado com sucesso!");
+      Navigator.pushNamed(context, "/home");
+    } else { 
+      print("Erro ao cadastrar usuário!");
+    }
   }
 }
