@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:seduc_app/pages/create_page.dart';
 import 'package:seduc_app/pages/teacher_page.dart';
 import 'package:seduc_app/components/ctextfield.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
+//import 'package:features/app/firebase_auth_implementation/firebase_auth_services.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
@@ -44,15 +46,13 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("", width: 180),
-                const SizedBox(height: 80),
-                Image.asset("assets/school.png"),
+                Image.asset("assets/school.png", width: 180,),
                 const SizedBox(height: 80),
                 CTextField(
-                  hintText: "CPF",
+                  hintText: "Email",
                   obscureText: false,
                   controller: cpfController,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 10),
                 CTextField(
@@ -103,8 +103,39 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                     ),
-                  ),
-                ),
+                    ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.black, 
+                          backgroundColor: const Color.fromRGBO(58, 141, 192, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CreatePage(),
+                            ),
+                          );
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            "Criar conta",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
               ],
             ),
           ),
