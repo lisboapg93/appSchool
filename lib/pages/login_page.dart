@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seduc_app/pages/create_page.dart';
 import 'package:seduc_app/pages/teacher_page.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
-
 import '../features/firebase_auth_implementation/firebase_auth_services.dart';
-//import 'package:features/app/firebase_auth_implementation/firebase_auth_services.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {

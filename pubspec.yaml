@@ -1,4 +1,4 @@
-name: seduc_app
+name: appSchool
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -42,7 +42,7 @@ dependencies:
   http: ^1.1.0
   flutter_masked_text2: ^0.9.1
   cupertino_icons: ^1.0.6
-  firebase_core: any
+  firebase_core: ^2.27.1
   cloud_firestore: ^4.15.9
   firebase_auth: ^4.17.9
   firebase_storage: ^11.6.10
