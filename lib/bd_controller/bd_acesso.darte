@@ -1,0 +1,25 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+Future<List<String>> getDropdownEscola() async {
+  final response = await http.get(Uri.parse('http://sua_api/api/data'));
+
+  if (response.statusCode == 200) {
+    List<dynamic> escolas = json.decode(response.body);
+    return escolas.map((item) => item['nome']).toList();
+  } else {
+    throw Exception('Falha ao carregar dados do servidor');
+  }
+}
+
+
+Future<List<String>> getDropdownTurma() async {
+  final response = await http.get(Uri.parse('http://sua_api/api/data'));
+
+  if (response.statusCode == 200) {
+    List<dynamic> turmas = json.decode(response.body);
+    return turmas.map((item) => item['nome']).toList();
+  } else {
+    throw Exception('Falha ao carregar dados do servidor');
+  }
+}
