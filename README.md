@@ -1,16 +1,12 @@
-# app School
+# Aplicativo de chamadas
 
-A new Flutter project.
+app school é um aplicativo de chamada de alunos voltado para o uso de professores.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Objetivo
 
-A few resources to get you started if this is your first Flutter project:
+Este projeto/aplicativo tem como finalidade que o professor faça o login, escolha a escola, escolha sua turma, disciplina e dia, após escolher, aparecerá a lista de alunos e poderá marcar a presença dos mesmos e confimar.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="appSchool/assets/scs1.png" height="500"><br>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="appSchool/assets/scs2.png" height="500"><br>

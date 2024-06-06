@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:appSchool/pages/login_page.dart';
 
 void main() {
-  runApp(const SeducApp());
+  runApp(const SchoolApp());
 }
 
-class SeducApp extends StatelessWidget {
-  const SeducApp({super.key});
+class SchoolApp extends StatelessWidget {
+  const SchoolApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'SIAEP app',
+      title: 'Escola app',
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(58, 141, 192, 1),
       ),

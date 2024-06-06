@@ -19,14 +19,14 @@ class HomePageState extends State<HomePage> {
   String? selectedValueTurma;
   String? selectedValueDisciplina;
 
-  final List<String> escolas = ['URA', 'URE', 'URI', 'URO', 'URUhfgjhhfgfg'];
+  final List<String> escolas = ['Escola Verde Vida', 'Colégio Arvoredo', 'Escola Rio Azul', 'Colégio Inovação', 'Escola Dom Emilio'];
   final List<String> turmas = [
-    'PCM',
-    'B40',
-    'PCC',
-    'KLS',
-    'GLS',
-    'LGBTQQICAAPF2K+'
+    'TDS',
+    'TDE',
+    'TDC',
+    'TJP',
+    'TIN',
+    'TET'
   ];
 
   final List<String> disciplina = [
